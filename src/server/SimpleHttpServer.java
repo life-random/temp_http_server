@@ -69,6 +69,10 @@ public class SimpleHttpServer {
         server.createContext("/health", new HealthHandler());
         // - http://localhost:8080/api/users
         server.createContext("/api/users", new UserApiHandler());
+        // - http://localhost:8080/api/sign_up
+        server.createContext("/api/sign_up", new SignUpHandler());
+        // - http://localhost:8080/sign_up_prosses
+        server.createContext("/sign_up_process", new SignUpProcesHandler());
 
 
         // 3. 요청을 처리할 스레드 풀 지정 (http 서버는 멀티 스레드 프로그램이라서 미리 생성할 스레드를 지정한다)
@@ -89,7 +93,8 @@ public class SimpleHttpServer {
 
 
     // 응답을 내보낸다
-    static void sendResponse(HttpExchange exchange, int statusCode, String contentType, String bodyText)
+    static void
+    sendResponse(HttpExchange exchange, int statusCode, String contentType, String bodyText)
             throws IOException {
         // 1. 보낼 데이터 (매개 변수 bodyText)
         // 2. 문자열을 바이트 배열로 바꾼다.
