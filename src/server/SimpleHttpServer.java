@@ -12,6 +12,8 @@ import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.Executors;
 
+
+
 /**
  * 순수 자바로 만드는 HTTP 서버
  * ** 등장 클래스 **
@@ -69,7 +71,7 @@ public class SimpleHttpServer {
         server.createContext("/health", new HealthHandler());
         // - http://localhost:8080/api/users
         server.createContext("/api/users", new UserApiHandler());
-
+        server.createContext("/api/posts", new PostApiHandler());
 
         // 3. 요청을 처리할 스레드 풀 지정 (http 서버는 멀티 스레드 프로그램이라서 미리 생성할 스레드를 지정한다)
         server.setExecutor(Executors.newFixedThreadPool(THREAD_POOL_SIZE));
@@ -122,8 +124,11 @@ public class SimpleHttpServer {
             while (  (line = reader.readLine()) != null ) {
                 requestBody.append(line);
             }
+
         }
        return requestBody.toString();
+       
     }
 
+    
 } // end of class

@@ -30,7 +30,6 @@ public class HomeHandler implements HttpHandler {
                 </ul>
               </body>
             </html>
-            
             """;
 
     @Override
